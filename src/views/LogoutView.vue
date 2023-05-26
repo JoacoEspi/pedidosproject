@@ -9,6 +9,8 @@
   </template>
   
   <script>
+  // Preguntarle al usuario si realmente quiere salir de la sesion 
+  // Luego de salir de la sesion dejar el usuario y el carrito en blanco
   import { IonPage, IonButton, IonContent } from "@ionic/vue";
   import { useLoginStore } from "../stores/login";
   

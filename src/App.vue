@@ -8,7 +8,8 @@ export default {
  setup() {
  const store = useLoginStore();
  const { isLogin, usuario } = storeToRefs(store)
- return { isLogin, usuario }
+ // const login = store (para traer los metodos del store)
+ return { isLogin, usuario}
  },
 }
 
@@ -17,9 +18,8 @@ export default {
   <ion-app>
       <ion-header>
         <div>
-          <nav>
+          <nav v-if="isLogin">
             <RouterLink to="/">Home /</RouterLink>
-            <RouterLink to="/about">About /</RouterLink>
             <RouterLink v-if="!isLogin" to="/login">Login |</RouterLink>
             <RouterLink v-if="isLogin" to="/logout">Logout</RouterLink>
             Usuario: {{ usuario.email }}
