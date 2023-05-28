@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router'
+import { createRouter, createWebHistory } from '@ionic/vue-router' //PERMITE LA TRANSICION ENTRE LAS RUTAS
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
@@ -20,6 +20,11 @@ const router = createRouter({
       path: '/logout',
       name: 'logout',
       component: LogoutView
+    },
+    {
+      path: '/productos',
+      name: 'productos',
+      component: ProductosView
     }
   ]
 })
