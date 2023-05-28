@@ -12,7 +12,7 @@ opcion //de @click
 </template>
 
 <script>
-import {Ionpage} from "@ionic/vue";
+import {IonPage} from '@ionic/vue'
 export default {
     components: {IonPage}
 }
