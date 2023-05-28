@@ -1,9 +1,7 @@
-<template>
-  
-</template>
+<template></template>
 
 <script>
-// Esta view debe mostrar: Un array de Compras (Listado de productos), con su monto y cliente asociado. 
+// Esta view debe mostrar: Un array de Compras (Listado de productos), con su monto y cliente asociado.
 // Debe ser visible solo para el gerente/admin. (Se deben crear usuarios con diferentes permisos)
 // Que tenga la opcion de descargar el reporte como un JSON (algo asi)
 // Mostraria algo asi cada compra:
@@ -19,11 +17,18 @@
 // Codigo de Compra: 0230 Productos: "Pizza", "Empanadas", etc Monto: $10000 Cliente: Pepe Fecha: 01/10/17
 
 // Existe la posibilidad de hacer un desplegable del listado de productos para que se haga menos choclo
-export default {
 
+<script>
+import {Ion-page} from '@ionic/vue'
+export default {
+    components: {IonPage}
 }
 </script>
 
-<style>
+<template>
+  <ion-page>
+    <h2>REPORTERIA</h2>
+  </ion-page>
+</template>
 
-</style>
+<style></style>
