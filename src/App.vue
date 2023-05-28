@@ -23,6 +23,7 @@ export default {
           <RouterLink v-if="isLogin" to="/logout">Logout</RouterLink>
           Usuario: {{ usuario.email }}
           <RouterLink to="/productos">Productos |</RouterLink>
+          <RouterLink to="/reporte">Reporte |</RouterLink>
         </nav>
       </div>
     </ion-header>

@@ -1,6 +1,3 @@
-<template></template>
-
-<script>
 // Esta view debe mostrar: Un array de Compras (Listado de productos), con su monto y cliente asociado.
 // Debe ser visible solo para el gerente/admin. (Se deben crear usuarios con diferentes permisos)
 // Que tenga la opcion de descargar el reporte como un JSON (algo asi)
@@ -18,17 +15,19 @@
 
 // Existe la posibilidad de hacer un desplegable del listado de productos para que se haga menos choclo
 
-<script>
-import {Ion-page} from '@ionic/vue'
-export default {
-    components: {IonPage}
-}
-</script>
-
 <template>
   <ion-page>
     <h2>REPORTERIA</h2>
   </ion-page>
 </template>
+
+<script>
+import {Ionpage} from "@ionic/vue";
+export default {
+    components: {IonPage}
+}
+</script>
+
+
 
 <style></style>

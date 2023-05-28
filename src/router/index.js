@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from '@ionic/vue-router' //PERMITE LA 
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
+import ProductosView from '../views/ProductosView.vue'
+import ReporteView from '../views/ReporteView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,6 +28,11 @@ const router = createRouter({
       path: '/productos',
       name: 'productos',
       component: ProductosView
+    },
+    {
+      path: '/reporte',
+      name: 'reporte',
+      component: ReporteView
     }
   ]
 })

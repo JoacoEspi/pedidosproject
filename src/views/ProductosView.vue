@@ -5,18 +5,17 @@ y //el boton que redirija En un futuro ver si es posible poner una imagen de la
 //Tener en cuenta Tarjetas de ION-CARD-ITEM sirve para la imagen y darle la
 opcion //de @click
 
-<script>
-import {Ion-page} from '@ionic/vue'
-export default {
-    components: {IonPage}
-}
-</script>
-
-
 <template>
   <ion-page>
     <h2>LISTADO DE PRODUCTOS</h2>
   </ion-page>
 </template>
+
+<script>
+import {Ionpage} from "@ionic/vue";
+export default {
+    components: {IonPage}
+}
+</script>
 
 <style></style>
