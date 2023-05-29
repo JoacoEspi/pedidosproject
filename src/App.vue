@@ -18,12 +18,13 @@ export default {
     <ion-header>
       <div>
         <nav v-if="isLogin">
-          <RouterLink to="/">Home /</RouterLink>
-          <RouterLink v-if="!isLogin" to="/login">Login |</RouterLink>
-          <RouterLink v-if="isLogin" to="/logout">Logout</RouterLink>
+          <RouterLink to="/"> Home |</RouterLink>
+          <RouterLink v-if="!isLogin" to="/login"> Login |</RouterLink>
+          <RouterLink to="/productos"> Productos |</RouterLink>
+          <RouterLink to="/reporte"> Reporte |</RouterLink>
+          <RouterLink to="/carrito"> Carrito |</RouterLink>
           Usuario: {{ usuario.email }}
-          <RouterLink to="/productos">Productos |</RouterLink>
-          <RouterLink to="/reporte">Reporte |</RouterLink>
+          <RouterLink v-if="isLogin" to="/logout">| Logout </RouterLink>
         </nav>
       </div>
     </ion-header>

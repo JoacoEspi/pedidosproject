@@ -1,5 +1,9 @@
 <template>
-  
+  <ion-page>
+    <ion-content> 
+        <h2>Carrito de Compras</h2> 
+    </ion-content>
+  </ion-page>
 </template>
 
 <script>
@@ -11,11 +15,11 @@
 // (No enviaria a otra vista sino que mostraria en pantalla un mensaje del estilo "Su comida esta en camino")
 // El listado tiene que tener las cantadidades de productos, su sumatoria y un monto total de la compra.
 // Se deberia guardar un registro de la compra efectuada para mas adelante generar un registro gerencial. (Que se guarde en un array de la vista "ReportelView")
+import { IonPage, IonButton, IonContent } from "@ionic/vue";
 export default {
-
-}
+  components: { IonPage, IonButton, IonContent },
+};
 </script>
 
 <style>
-
 </style>

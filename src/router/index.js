@@ -4,6 +4,8 @@ import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import ProductosView from '../views/ProductosView.vue'
 import ReporteView from '../views/ReporteView.vue'
+import CarritoView from '../views/CarritoView.vue'
+import EliminacionView from '../views/EliminacionView.vue'
 
 
 const router = createRouter({
@@ -33,7 +35,17 @@ const router = createRouter({
       path: '/reporte',
       name: 'reporte',
       component: ReporteView
-    }
+    },
+    {
+      path: '/eliminacion',
+      name: 'eliminacion',
+      component: EliminacionView
+    },
+    {
+      path: '/carrito',
+      name: 'carrito',
+      component: CarritoView
+    },
   ]
 })
 
