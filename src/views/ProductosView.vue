@@ -48,7 +48,6 @@ export default {
 }
 </script>
 
-
 <style>
   ion-card-title{
     font-family:'sans-serif';
