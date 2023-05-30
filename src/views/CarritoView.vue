@@ -1,20 +1,36 @@
 <template>
   <ion-page>
-    <ion-content>
-      <h2>Carrito de Compras</h2>
-      <ul>
-        <li v-for="(producto, index) in carrito" :key="producto.id">
-          {{ producto.nombre }} - Cantidad: {{ producto.cantidad }} - Precio:
-          {{ producto.precio }}
-          <ion-button @click="editarProducto(index)">Editar</ion-button>
-          <ion-button @click="eliminarProducto(index)">Eliminar</ion-button>
-        </li>
-      </ul>
-      <p>Total de productos: {{ totalProductos }}</p>
-      <p>Sumatoria de productos: {{ sumatoria }}</p>
-      <p>Monto total de la compra: {{ montoTotal }}</p>
-      <ion-button @click="efectuarCompra">Efectuar Compra</ion-button>
-    </ion-content>
+    <ion-page>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Carrito de Compras</ion-card-title>
+          <ion-card-subtitle
+            >Listo para saborear y comprar. ¡Finalizá tu compra ahora!</ion-card-subtitle
+          >
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list v-for="(producto, index) in carrito" :key="producto.id">
+            <ion-item>
+              <ion-thumbnail>
+                <ion-img :src="producto.imagen">Producto</ion-img>
+              </ion-thumbnail>
+              <ion-label
+                >{{ producto.nombre }} - Precio: {{ producto.precio }} -
+                <ion-button @click="editarProducto(index)">Editar</ion-button>
+                <ion-button @click="eliminarProducto(index)"
+                  >Eliminar</ion-button
+                ></ion-label
+              >
+            </ion-item>
+          </ion-list>
+          <p>Total de productos: {{ totalProductos }}</p>
+          <p>Sumatoria de productos: {{ sumatoria }}</p>
+          <p>Monto total de la compra: {{ montoTotal }}</p>
+        </ion-card-content>
+
+        <ion-button @click="efectuarCompra">Efectuar Compra</ion-button>
+      </ion-card>
+    </ion-page>
   </ion-page>
 </template>
 
@@ -34,9 +50,27 @@ export default {
   data() {
     return {
       carrito: [
-        { id: 1, nombre: "Producto 1", cantidad: 3, precio: 500 },
-        { id: 2, nombre: "Producto 2", cantidad: 4, precio: 700 },
-        { id: 3, nombre: "Producto 3", cantidad: 2, precio: 600 },
+        {
+          id: 1,
+          nombre: "Hamburguesa Premiun",
+          precio: 3100,
+          cantidad: 5,
+          imagen: "./src/assets/images/HAMBURGUESA.PNG",
+        },
+        {
+          id: 2,
+          nombre: "Pollo al Spiedo",
+          precio: 4500,
+          cantidad: 1,
+          imagen: "./src/assets/images/Pollo al Spiedo.JPG",
+        },
+        {
+          id: 3,
+          nombre: "Pizza Napolitana",
+          precio: 2200,
+          cantidad: 9,
+          imagen: "./src/assets/images/Pizza.PNG",
+        },
       ], // Array para almacenar los productos seleccionados
       totalProductos: 0,
       sumatoria: 0,
