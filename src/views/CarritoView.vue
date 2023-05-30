@@ -37,20 +37,16 @@ export default {
       sumatoria: 0,
       montoTotal: 0,
       compraRealizada: false,
+      productoAEliminar: 0
     };
   },
   methods: {
     eliminarProducto(index) {
-      const productoAEliminar = this.carrito[index];
-      const carritoJSON = JSON.stringify(this.carrito);
+      this.productoAEliminar = this.carrito[index];
       //Al presionar eliminar me lleva a la vista de EliminacionView. Y ademas le envío el listado de productos y el id del prducto a eliminar.
-      this.$router.push({
-        name: "EliminacionView",
-        params: {
-          carrito: carritoJSON,
-          productoId: productoAEliminar.id,
-        },
-      });
+      const encodedCarrito = encodeURIComponent(JSON.stringify(this.carrito));
+      const encodedProductoAEliminar = encodeURIComponent(JSON.stringify(this.productoAEliminar));
+      this.$router.push({ path: '/eliminacion', query: { objects: encodedCarrito } });
     },
     editarProducto(index) {
       // Lógica para ir a la vista de edición del producto seleccionado

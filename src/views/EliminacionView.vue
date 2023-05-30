@@ -5,7 +5,12 @@
         ¿Está seguro que desea eliminar el siguiente producto del carrito de
         compra?
       </h2>
-      <p>{{ producto }}</p>
+      <ul>
+        <li v-for="obj in carrito" :key="obj.id">
+          <p>Usuario ID: {{ obj.id }}</p>
+          <p>Nombre: {{ obj.nombre }}</p>
+        </li>
+      </ul>
       <ion-button @click="eliminar" color="danger">Eliminar</ion-button>
       <ion-button @click="volverCarrito" color="warning"
         >Volver al Carrito</ion-button
@@ -32,15 +37,15 @@ export default {
   },
   data() {
     return {
-      producto: "",
+      carrito: [], // La lista de objetos se asignará aquí después de decodificarla
     };
   },
   created() {
-    const carritoJSON = decodeURIComponent(this.$route.params.carrito);
-    const carrito = JSON.parse(carritoJSON);
-    const productoId = this.$route.params.productoId;
-
-    this.producto = carrito.find((producto) => producto.id === productoId);
+    const encodedCarrito = this.$route.query.objects;
+    //const encodedIdProducto = this.$route.query.idEliminar;
+    const decodedCarrito = JSON.parse(decodeURIComponent(encodedCarrito));
+    //const decodedIdProducto = JSON.parse(decodeURIComponent(encodedIdProducto));
+    this.carrito.push(decodedCarrito);
   },
 };
 </script>
