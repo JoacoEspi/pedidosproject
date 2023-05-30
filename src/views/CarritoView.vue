@@ -4,7 +4,8 @@
       <h2>Carrito de Compras</h2>
       <ul>
         <li v-for="(producto, index) in carrito" :key="producto.id">
-          {{ producto.nombre }} - Cantidad: {{ producto.cantidad }} - Precio: {{ producto.precio }}
+          {{ producto.nombre }} - Cantidad: {{ producto.cantidad }} - Precio:
+          {{ producto.precio }}
           <ion-button @click="editarProducto(index)">Editar</ion-button>
           <ion-button @click="eliminarProducto(index)">Eliminar</ion-button>
         </li>
@@ -32,41 +33,51 @@ export default {
   components: { IonPage, IonButton, IonContent },
   data() {
     return {
-      carrito: [{id:1, nombre:'Producto 1', cantidad:3, precio: 500}, {id:2, nombre:'Producto 2', cantidad:4, precio: 700}, {id:3, nombre:'Producto 3', cantidad:2, precio: 600} ], // Array para almacenar los productos seleccionados
+      carrito: [
+        { id: 1, nombre: "Producto 1", cantidad: 3, precio: 500 },
+        { id: 2, nombre: "Producto 2", cantidad: 4, precio: 700 },
+        { id: 3, nombre: "Producto 3", cantidad: 2, precio: 600 },
+      ], // Array para almacenar los productos seleccionados
       totalProductos: 0,
       sumatoria: 0,
       montoTotal: 0,
       compraRealizada: false,
-      productoAEliminar: 0
+      productoAEliminar: 0,
     };
   },
   methods: {
     eliminarProducto(index) {
-      this.productoAEliminar = this.carrito[index];
-      //Al presionar eliminar me lleva a la vista de EliminacionView. Y ademas le envío el listado de productos y el id del prducto a eliminar.
-      const encodedCarrito = encodeURIComponent(JSON.stringify(this.carrito));
-      const encodedProductoAEliminar = encodeURIComponent(JSON.stringify(this.productoAEliminar));
-      this.$router.push({ path: '/eliminacion', query: { objects: encodedCarrito } });
+      //this.productoAEliminar = this.carrito[index];
+      // Crea una copia profunda del array carrito
+      const carritoCopia = JSON.parse(JSON.stringify(this.carrito));
+      const encodedCarrito = encodeURIComponent(JSON.stringify(carritoCopia));
+      this.$router.push({
+        path: "/eliminacion",
+        query: {
+          objects: encodedCarrito,
+          idDelete: this.carrito[index].id,
+        },
+      });
     },
     editarProducto(index) {
       // Lógica para ir a la vista de edición del producto seleccionado
       const productoAModificar = this.carrito[index];
       //Al presionar eliminar me lleva a la vista de ModificacionView. Y ademas le envío el listado de productos y el id del prducto a modificar.
-      this.$router.push({
-        name: "ModificacionView",
-        params: {
-          carrito: this.carrito,
-          productoId: productoAModificar.id,
-        },
-      });
     },
     efectuarCompra() {
       // Lógica para efectuar la compra y registrar la fecha del momento
       const fechaActual = new Date();
       const fechaCompra = fechaActual.toLocaleString();
-      alert("Su comida está en camino. Fecha y hora de Compra: " + fechaCompra);
+      if (this.totalProductos > 0) {
+        alert(
+          "Su comida está en camino. Fecha y hora de Compra: " + fechaCompra
+        );
+      } else {
+        alert("Usted no seleccionó ningun producto.");
+      }
+
       // Falta registrarlo en el reporte "ReporteView"
-    }
+    },
   },
   computed: {
     montoTotal() {
@@ -77,10 +88,23 @@ export default {
       return total;
     },
     sumatoria() {
-        return this.carrito.reduce((acumulador, producto) => acumulador + producto.cantidad,0);
+      return this.carrito.reduce(
+        (acumulador, producto) => acumulador + producto.cantidad,
+        0
+      );
     },
-    totalProductos(){
-        return this.carrito.length;
+    totalProductos() {
+      return this.carrito.length;
+    },
+  },
+  created() {
+    const encodedCarrito2 = this.$route.query.borrado;
+    if (encodedCarrito2 != undefined) {
+      const borrado = JSON.parse(decodeURIComponent(encodedCarrito2));
+      if (borrado === true) {
+        const encodedCarrito3 = this.$route.query.objects2;
+        this.carrito = JSON.parse(decodeURIComponent(encodedCarrito3));
+      }
     }
   },
 };
