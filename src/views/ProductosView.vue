@@ -8,22 +8,40 @@ opcion //de @click
 
 <template>
   <ion-page>
-    <ion-content>
-      <ion-list-header>
-      <ion-label>Productos</ion-label>
-      </ion-list-header>
-        <ion-item v-for="(producto, index) in producto" :key="producto.id">
-        {{ producto.nombre }} - Precio: {{ producto.precio }}  
+    <ion-card-content>
+  <ion-list v-for="(producto, index) in producto" :key="producto.id">
+    {{ producto.nombre }} - Precio: {{ producto.precio }}  
         <ion-button @click="agregar(index)">Agregar</ion-button>
-        </ion-item>
-    </ion-content>
+    <ion-item >
+      <ion-thumbnail >
+        <img src="../assets/images/HAMBURGUESA.PNG"/>
+      </ion-thumbnail>
+      <ion-label>Hamburguesa Premium</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail >
+        <img src="../assets/images/Pollo al Spiedo.JPG"/>
+      </ion-thumbnail>
+      <ion-label>Pollo al Spiedo</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail >
+        <img  src="../assets/images/Pizza.PNG" />
+      </ion-thumbnail>
+      <ion-label>Pizza Napolitana</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-card-content>
   </ion-page>
 </template>
 
+
 <script>
-import {IonPage,IonList,IonListHeader,IonLabel,IonButton} from '@ionic/vue'
+import {IonPage,IonList,IonListHeader,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent} from '@ionic/vue'
 export default {
-    components: {IonPage,IonList,IonListHeader,IonLabel,IonButton}, 
+    components: {IonPage,IonList,IonListHeader,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent},
     data() {
       return {
       producto: [{id:1, nombre:'Hamburguesa Premiun', precio: 3100}, 
