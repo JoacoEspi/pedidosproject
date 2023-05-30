@@ -1,52 +1,34 @@
-// Es un listado de productos que permita seleccionar uno para que envie al
-//usuario a la vista de ese producto Solo se deberia ver un nombre del producto
-y //el boton que redirija En un futuro ver si es posible poner una imagen de la
-//comida Poner un boton que permita buscar la comida ejemplo: Buscar: "Pizza"
-//Tener en cuenta Tarjetas de ION-CARD-ITEM sirve para la imagen y darle la
-opcion //de @click
-
-
+//ANADIR BUSCADOR A LA PANTALLA
 <template>
   <ion-page>
+    <ion-card>
+    <ion-card-header>
+      <ion-card-title>Productos</ion-card-title>
+      <ion-card-subtitle>Disfrute de los mejores productos al mejor precio</ion-card-subtitle>
+    </ion-card-header>
     <ion-card-content>
-  <ion-list v-for="(producto, index) in producto" :key="producto.id">
-    {{ producto.nombre }} - Precio: {{ producto.precio }}  
-        <ion-button @click="agregar(index)">Agregar</ion-button>
-    <ion-item >
-      <ion-thumbnail >
-        <img src="../assets/images/HAMBURGUESA.PNG"/>
-      </ion-thumbnail>
-      <ion-label>Hamburguesa Premium</ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-thumbnail >
-        <img src="../assets/images/Pollo al Spiedo.JPG"/>
-      </ion-thumbnail>
-      <ion-label>Pollo al Spiedo</ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-thumbnail >
-        <img  src="../assets/images/Pizza.PNG" />
-      </ion-thumbnail>
-      <ion-label>Pizza Napolitana</ion-label>
-    </ion-item>
-  </ion-list>
-</ion-card-content>
+      <ion-list v-for="(producto, index) in producto" :key="producto.id">
+        <ion-item >
+        <ion-thumbnail>
+        <ion-img :src= "producto.imagen" >Producto</ion-img>
+        </ion-thumbnail>
+        <ion-label>{{ producto.nombre }} - Precio: {{ producto.precio }}  - <ion-button @click="agregar(index)">Agregar</ion-button></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
   </ion-page>
 </template>
 
-
 <script>
-import {IonPage,IonList,IonListHeader,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent} from '@ionic/vue'
+import {IonPage,IonList,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,IonCardHeader} from '@ionic/vue'
 export default {
-    components: {IonPage,IonList,IonListHeader,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent},
+    components: {IonPage,IonList,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,IonCardHeader},
     data() {
       return {
-      producto: [{id:1, nombre:'Hamburguesa Premiun', precio: 3100}, 
-		            {id:2, nombre:'Pollo al Spiedo', precio: 4500}, 
-		            {id:3, nombre:'Pizza Napolitana', precio: 2200} ]
+      producto: [{id:1, nombre:'Hamburguesa Premiun', precio: 3100, imagen: "./src/assets/images/HAMBURGUESA.PNG"}, 
+		            {id:2, nombre:'Pollo al Spiedo', precio: 4500, imagen:"./src/assets/images/Pollo al Spiedo.JPG"}, 
+		            {id:3, nombre:'Pizza Napolitana', precio: 2200, imagen: "./src/assets/images/Pizza.PNG"}]
     };
   }, 
   methods: {
@@ -66,5 +48,22 @@ export default {
 }
 </script>
 
+<style>
+  ion-card-title{
+    font-family:'sans-serif';
+    color: black;
+    font-size:xx-large
+  }
 
-<style></style>
+  ion-card-subtitle{
+    font-family: 'sans-serif';
+    color: black;
+    font-size:x-large;
+  }
+
+  ion-label,ion-list,ion-item{
+    font-family: 'sans-serif';
+    color: black;
+    font-size:medium;
+  }
+</style>

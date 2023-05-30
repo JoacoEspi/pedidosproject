@@ -24,7 +24,7 @@ export default {
   methods: {
     unlogear() {
       this.logout();
-      this.$router.push("/login");
+      this.$router.push("/");
     },
     aHome() {
       this.$router.push("/");
