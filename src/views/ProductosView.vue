@@ -66,4 +66,9 @@ export default {
     color: black;
     font-size:medium;
   }
+  
+  ion-img {
+      border-radius: 10px;
+  }
+
 </style>
