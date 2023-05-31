@@ -4,7 +4,8 @@
     <ion-card>
     <ion-card-header>
       <ion-card-title>Productos</ion-card-title>
-      <ion-card-subtitle>Disfrute de los mejores productos al mejor precio</ion-card-subtitle>
+      <ion-card-subtitle>Disfrute de los mejores productos al mejor precio.</ion-card-subtitle>
+      <ion-searchbar v-model="busqueda"></ion-searchbar>
     </ion-card-header>
     <ion-card-content>
       <ion-list v-for="(producto, index) in producto" :key="producto.id">
@@ -21,9 +22,9 @@
 </template>
 
 <script>
-import {IonPage,IonList,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,IonCardHeader} from '@ionic/vue'
+import {IonPage,IonList,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,IonCardHeader,IonSearchbar} from '@ionic/vue'
 export default {
-    components: {IonPage,IonList,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,IonCardHeader},
+    components: {IonPage,IonList,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,IonCardHeader,IonSearchbar},
     data() {
       return {
       producto: [{id:1, nombre:'Hamburguesa Premiun', precio: 3100, imagen: "./src/assets/images/HAMBURGUESA.PNG"}, 
@@ -43,6 +44,13 @@ export default {
               productoId: productoSeleccionado.id,
         },
       })
+    },
+      buscarProducto(nombre1){
+        //Asignamos a variable lista de productos.
+        const listaProductos = this.producto
+        //Usamos Filter para obtener el producto buscado - Devuelve un array nuevo con los que cumplan.
+        const resultado=listaProductos.filter(pro => pro.nombre == nombre1)
+        return  console.log(resultado)
     }
   }
 }
@@ -58,7 +66,7 @@ export default {
   ion-card-subtitle{
     font-family: 'sans-serif';
     color: black;
-    font-size:x-large;
+    font-size:large;
   }
 
   ion-label,ion-list,ion-item{
