@@ -1,9 +1,10 @@
-//ANADIR BUSCADOR A LA PANTALLA
 <template>
   <ion-page>
-    <ion-card>
+    <ion-content>
+
+      <ion-card>
     <ion-card-header>
-      <ion-card-title>Productos</ion-card-title>
+      <ion-card-title>Menu</ion-card-title>
       <ion-card-subtitle>Disfrute de los mejores productos al mejor precio.</ion-card-subtitle>
       <ion-searchbar v-model="busqueda"></ion-searchbar>
     </ion-card-header>
@@ -13,24 +14,35 @@
         <ion-thumbnail>
         <ion-img :src= "producto.imagen" >Producto</ion-img>
         </ion-thumbnail>
-        <ion-label>{{ producto.nombre }} - Precio: {{ producto.precio }}  - <ion-button @click="agregar(index)">Agregar</ion-button></ion-label>
+        <ion-label> {{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
+        <ion-button  @click="agregar(index)">Agregar</ion-button>
         </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+  </ion-content>
   </ion-page>
 </template>
 
 <script>
-import {IonPage,IonList,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,IonCardHeader,IonSearchbar} from '@ionic/vue'
+import {IonPage,IonList,IonLabel,IonButton,IonItem,
+        IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,
+        IonCardHeader,IonSearchbar,IonContent} from '@ionic/vue'
+
 export default {
-    components: {IonPage,IonList,IonLabel,IonButton,IonItem,IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,IonCardHeader,IonSearchbar},
+    components: {IonPage,IonList,IonLabel,IonButton,IonItem,
+                IonThumbnail,IonCardContent,IonImg,IonCardTitle,
+                IonCardSubtitle,IonCardHeader,IonSearchbar,IonContent},
     data() {
       return {
       producto: [{id:1, nombre:'Hamburguesa Premiun', precio: 3100, imagen: "./src/assets/images/HAMBURGUESA.PNG"}, 
 		            {id:2, nombre:'Pollo al Spiedo', precio: 4500, imagen:"./src/assets/images/Pollo al Spiedo.JPG"}, 
-		            {id:3, nombre:'Pizza Napolitana', precio: 2200, imagen: "./src/assets/images/Pizza.PNG"}]
-    };
+		            {id:3, nombre:'Pizza Napolitana', precio: 2200, imagen: "./src/assets/images/Pizza.PNG"},
+                {id:4, nombre:'Milanesa', precio:2500, imagen: "./src/assets/images/milanesa.jpg"},
+                {id:5, nombre:'Empanadas', precio:500, imagen: "./src/assets/images/empanadas.jpg"},
+                {id:5, nombre:'Asado', precio:5000, imagen: "./src/assets/images/asado2.jpg"}]
+      }
   }, 
   methods: {
     agregar(index) {
@@ -45,18 +57,19 @@ export default {
         },
       })
     },
-      buscarProducto(nombre1){
-        //Asignamos a variable lista de productos.
-        const listaProductos = this.producto
-        //Usamos Filter para obtener el producto buscado - Devuelve un array nuevo con los que cumplan.
-        const resultado=listaProductos.filter(pro => pro.nombre == nombre1)
-        return  console.log(resultado)
+    buscarProducto(nombre1){
+      //Asignamos a variable lista de productos.
+      const listaProductos = this.producto
+      //Usamos Filter para obtener el producto buscado - Devuelve un array nuevo con los que cumplan.
+      const resultado = listaProductos.filter(pro => pro.nombre == nombre1)
+      return resultado
     }
   }
 }
 </script>
 
 <style>
+
   ion-card-title{
     font-family:'sans-serif';
     color: black;
@@ -78,5 +91,11 @@ export default {
   ion-img {
       border-radius: 10px;
   }
+
+  ion-button{
+    display: inline-flex;
+    justify-content: left;
+  }
+  
 
 </style>
