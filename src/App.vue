@@ -25,7 +25,6 @@ export default {
           <RouterLink to="/carrito"> Carrito |</RouterLink>
           <RouterLink v-if="isLogin" to="/logout"> Logout |</RouterLink>
           Usuario: {{ usuario.Email }}
-          <RouterLink v-if="isLogin" to="/logout">| Logout </RouterLink>
         </nav>
       </div>
     </ion-header>
