@@ -23,7 +23,8 @@ export default {
           <RouterLink to="/productos"> Productos |</RouterLink>
           <RouterLink to="/reporte"> Reporte |</RouterLink>
           <RouterLink to="/carrito"> Carrito |</RouterLink>
-          Usuario: {{ usuario.email }}
+          <RouterLink v-if="isLogin" to="/logout"> Logout |</RouterLink>
+          Usuario: {{ usuario.Email }}
           <RouterLink v-if="isLogin" to="/logout">| Logout </RouterLink>
         </nav>
       </div>

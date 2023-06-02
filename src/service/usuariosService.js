@@ -10,7 +10,7 @@ const apiClient = axios.create({
 export default {
     async cargar() {
     try {
-    const response = await apiClient.get('/usuarios');
+    const response = await apiClient.get('/Usuarios');
     return response.data
     } catch (error) {
     throw "Error de conexion"
@@ -18,21 +18,21 @@ export default {
     },
     async agregar(usuario) {
     try {
-    await apiClient.post('/usuarios', usuario);
+    await apiClient.post('/Usuarios', usuario);
     } catch (error) {
     throw "Error de conexion"
     }
     },
     async eliminar(id) {
         try {
-        await apiClient.delete("/usuarios/" + id)
+        await apiClient.delete('/Usuarios/' + id)
         } catch (error) {
         throw "Error de conexion"
         }
         },
         async modificar(id, usuario) {
         try {
-        await apiClient.put("/usuarios/" + id, usuario)
+        await apiClient.put('/Usuarios/' + id, usuario)
         } catch (error) {
         throw "Error de conexion"
         }
