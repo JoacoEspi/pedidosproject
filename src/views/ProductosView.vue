@@ -1,30 +1,3 @@
-<template>
-  <ion-page>
-    <ion-content>
-
-      <ion-card>
-    <ion-card-header>
-      <ion-card-title>Menu</ion-card-title>
-      <ion-card-subtitle>Disfrute de los mejores productos al mejor precio.</ion-card-subtitle>
-      <ion-searchbar v-model="busqueda"></ion-searchbar>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list v-for="(producto, index) in producto" :key="producto.id">
-        <ion-item >
-        <ion-thumbnail>
-        <ion-img :src= "producto.imagen" >Producto</ion-img>
-        </ion-thumbnail>
-        <ion-label> {{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
-        <ion-button  @click="agregar(index)">Agregar</ion-button>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-
-  </ion-content>
-  </ion-page>
-</template>
-
 <script>
 import {IonPage,IonList,IonLabel,IonButton,IonItem,
         IonThumbnail,IonCardContent,IonImg,IonCardTitle,IonCardSubtitle,
@@ -41,13 +14,14 @@ export default {
 		            {id:3, nombre:'Pizza Napolitana', precio: 2200, imagen: "./src/assets/images/Pizza.PNG"},
                 {id:4, nombre:'Milanesa', precio:2500, imagen: "./src/assets/images/milanesa.jpg"},
                 {id:5, nombre:'Empanadas', precio:500, imagen: "./src/assets/images/empanadas.jpg"},
-                {id:5, nombre:'Asado', precio:5000, imagen: "./src/assets/images/asado2.jpg"}]
-      }
+                {id:5, nombre:'Asado', precio:5000, imagen: "./src/assets/images/asado2.jpg"}],
+      resultados: []
+      }  
   }, 
   methods: {
     agregar(index) {
       const productoSeleccionado = this.producto[index];
-      const prducto = JSON.stringify(this.producto);
+      const producto = JSON.stringify(this.producto);
       //Redirige a la vista de Detalle
       this.$router.push({
           name: "DetallesProductoView",
@@ -61,12 +35,57 @@ export default {
       //Asignamos a variable lista de productos.
       const listaProductos = this.producto
       //Usamos Filter para obtener el producto buscado - Devuelve un array nuevo con los que cumplan.
-      const resultado = listaProductos.filter(pro => pro.nombre == nombre1)
-      return resultado
-    }
+      const productosEncontrados = listaProductos.filter(pro => pro.nombre == nombre1)
+      this.resultados = productosEncontrados
+     
+    },
   }
 }
 </script>
+
+
+<template>
+  <ion-page>
+    <ion-content>
+      
+    <ion-card>
+    <ion-card-header>
+      <ion-card-title>Menu</ion-card-title>
+      <ion-card-subtitle>Disfrute de los mejores productos al mejor precio.</ion-card-subtitle>
+     
+    </ion-card-header>
+
+    <ion-card-content>
+    <div>
+    <ion-searchbar >
+      <ion-button @click="buscarProducto(nombre1)"> Buscar </ion-button>
+      <ul>
+      <li v-for="resultado in resultados" :key="resultado.id">
+        {{ resultado.nombre }}</li>
+      </ul>
+    </ion-searchbar>
+    
+   </div>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-list v-for="(producto, index) in producto" :key="producto.id">
+        <ion-item >
+        <ion-thumbnail>
+        <ion-img :src= "producto.imagen" >Producto</ion-img>
+        </ion-thumbnail>
+        <ion-label> {{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
+        <ion-button  @click="agregar(index)">Agregar</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    
+  </ion-card>
+
+  </ion-content>
+  </ion-page>
+</template>
+
 
 <style>
 

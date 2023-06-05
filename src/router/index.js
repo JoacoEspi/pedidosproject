@@ -46,6 +46,7 @@ const router = createRouter({
       name: 'carrito',
       component: CarritoView
     },
+    
   ]
 })
 
