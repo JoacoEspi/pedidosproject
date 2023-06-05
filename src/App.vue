@@ -1,10 +1,10 @@
 <script>
 import { RouterLink, RouterView } from "vue-router";
-import { IonApp, IonHeader } from "@ionic/vue";
+import { IonApp, IonHeader} from "@ionic/vue";
 import { storeToRefs } from "pinia";
 import { useLoginStore } from "./stores/login";
 export default {
-  components: { IonApp, IonHeader },
+  components: { IonApp, IonHeader},
   setup() {
     const store = useLoginStore();
     const { isLogin, usuario } = storeToRefs(store);
@@ -23,8 +23,8 @@ export default {
           <RouterLink to="/productos"> Productos |</RouterLink>
           <RouterLink to="/reporte"> Reporte |</RouterLink>
           <RouterLink to="/carrito"> Carrito |</RouterLink>
-          Usuario: {{ usuario.email }}
-          <RouterLink v-if="isLogin" to="/logout">| Logout </RouterLink>
+          <RouterLink v-if="isLogin" to="/logout"> Logout |</RouterLink>
+          Usuario: {{ usuario.Email }}
         </nav>
       </div>
     </ion-header>
@@ -33,4 +33,5 @@ export default {
   </ion-app>
 </template>
 
-<style></style>
+<style>
+</style>

@@ -17,14 +17,19 @@
 
 <template>
   <ion-page>
-    <h2>REPORTERIA</h2>
+    <ion-content>
+      <ion-card-header>
+      <ion-card-title>Modulo de Analitica</ion-card-title>
+      <ion-card-subtitle>Historico de Compras</ion-card-subtitle>
+      </ion-card-header>
+    </ion-content>
   </ion-page>
 </template>
 
 <script>
-import {IonPage} from '@ionic/vue'
+import {IonPage,IonContent,IonCardHeader,IonCardTitle,IonCardSubtitle} from '@ionic/vue'
 export default {
-    components: {IonPage}
+    components: {IonPage,IonContent,IonCardHeader,IonCardTitle,IonCardSubtitle}
 }
 </script>
 
