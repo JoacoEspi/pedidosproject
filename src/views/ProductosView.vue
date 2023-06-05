@@ -89,13 +89,12 @@ export default {
     },
     buscarProducto() {
       const listaProductos = this.producto;
-      const productosEncontrados = listaProductos.filter((pro) => pro.nombre.includes(this.searchText));
+      const productosEncontrados = listaProductos.filter((pro) =>pro.nombre.includes(this.searchText));
       this.resultados = productosEncontrados;
     },
   },
 };
 </script>
-
 
 <template>
   <ion-page>
@@ -103,16 +102,14 @@ export default {
       <ion-card>
         <ion-card-header>
           <ion-card-title>Menu</ion-card-title>
-          <ion-card-subtitle
-            >Disfrute de los mejores productos al mejor
-            precio.</ion-card-subtitle
-          >
+          <ion-card-subtitle>Disfrute de los mejores productos al mejor
+            precio.</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
           <div>
             <ion-searchbar v-model="searchText" placeholder="Buscar producto"></ion-searchbar>
-            <ion-button @click="buscarProducto()">Buscar</ion-button>
+            <ion-button @click="buscarProducto()" v-if="condicion">Buscar</ion-button>
             <ul>
               <li v-for="resultado in resultados" :key="resultado.id">
                 <ion-card-content>
@@ -120,10 +117,7 @@ export default {
                     <ion-thumbnail>
                       <ion-img :src="resultado.imagen">Producto</ion-img>
                     </ion-thumbnail>
-                    <ion-label>
-                      {{ resultado.nombre }} - Precio:
-                      {{ resultado.precio }}</ion-label
-                    >
+                    <ion-label>{{ resultado.nombre }} - Precio:{{resultado.precio}}</ion-label>
                     <ion-button @click="agregar(index)">Agregar</ion-button>
                   </ion-item>
                 </ion-card-content>
@@ -138,9 +132,7 @@ export default {
               <ion-thumbnail>
                 <ion-img :src="producto.imagen">Producto</ion-img>
               </ion-thumbnail>
-              <ion-label>
-                {{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label
-              >
+              <ion-label>{{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
               <ion-button @click="agregar(index)">Agregar</ion-button>
             </ion-item>
           </ion-list>
@@ -149,7 +141,6 @@ export default {
     </ion-content>
   </ion-page>
 </template>
-
 
 <style>
 ion-card-title {
