@@ -28,15 +28,15 @@ export default {
         await apiClient.delete('/Usuarios/' + id)
         } catch (error) {
         throw "Error de conexion"
-        }
-        },
-        async modificar(id, usuario) {
+    }
+    },
+    async modificar(id, usuario) {
         try {
         await apiClient.put('/Usuarios/' + id, usuario)
         } catch (error) {
         throw "Error de conexion"
-        }
-        }
-   }
+    }
+    }
+}
    
    

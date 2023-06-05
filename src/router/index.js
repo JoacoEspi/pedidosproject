@@ -6,6 +6,7 @@ import ProductosView from '../views/ProductosView.vue'
 import ReporteView from '../views/ReporteView.vue'
 import CarritoView from '../views/CarritoView.vue'
 import EliminacionView from '../views/EliminacionView.vue'
+import DetallesProductoView from '../views/DetallesProductosView.vue'
 
 
 const router = createRouter({
@@ -46,6 +47,11 @@ const router = createRouter({
       name: 'carrito',
       component: CarritoView
     },
+    {
+      path: '/detalle/:id',
+      name: 'detalle-producto',
+      component: DetallesProductoView
+    }
     
   ]
 })
