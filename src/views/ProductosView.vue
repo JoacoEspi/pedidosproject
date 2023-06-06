@@ -75,14 +75,12 @@ export default {
     };
   },
   methods: {
-    agregar(index) {
-      const productoSeleccionado = this.producto[index];
-      const producto = JSON.stringify(this.producto);
+    agregar(index, producto1) {
       //Redirige a la vista de Detalle
       this.$router.push({
         name: "detalle",
         params: {
-          producto: producto,
+          producto: producto1,
         },
       });
     },
@@ -119,7 +117,7 @@ export default {
                     <ion-img :src="resultado.imagen">Producto</ion-img>
                   </ion-thumbnail>
                   <ion-label>{{ resultado.nombre }} - Precio: {{ resultado.precio }}</ion-label>
-                  <ion-button @click="agregar(index)">Agregar</ion-button>
+                  <ion-button @click="agregar(index,producto)">Agregar</ion-button>
                 </ion-item>
               </ion-card-content>
             </ion-list>
@@ -134,7 +132,7 @@ export default {
                     <ion-img :src="producto.imagen">Producto</ion-img>
                   </ion-thumbnail>
                   <ion-label>{{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
-                  <ion-button @click="agregar(index)">Agregar</ion-button>
+                  <ion-button @click="agregar(index,producto)">Agregar</ion-button>
                 </ion-item>
               </ion-card-content>
             </ion-list>
