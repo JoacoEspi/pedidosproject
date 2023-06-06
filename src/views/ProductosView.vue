@@ -83,7 +83,6 @@ export default {
         name: "detalle",
         params: {
           producto: producto,
-          productoId: productoSeleccionado.id,
         },
       });
     },
