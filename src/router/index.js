@@ -48,7 +48,7 @@ const router = createRouter({
       component: CarritoView
     },
     {
-      path: '/detalle',
+      path: '/detalle/:id',
       name: 'detalle',
       component: DetallesProductoView
     }

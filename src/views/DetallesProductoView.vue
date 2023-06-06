@@ -17,6 +17,9 @@
 
                 <ion-card-content>
                     <ion-item>
+                        <ion-thumbnail slot="start">
+                            <ion-img :src="producto.imagen"></ion-img>
+                        </ion-thumbnail>
                         <ion-label>Cantidad:</ion-label>
                         <ion-input type="number" v-model="cantidad" min="1" max="10"></ion-input>
                     </ion-item>
@@ -29,6 +32,7 @@
             </ion-card>
 
             <ion-button expand="block" @click="agregarAlCarrito()">Agregar al carrito</ion-button>
+            <ion-button expand="block" @click="irACarrito()">Ver Carrito</ion-button>
         </ion-content>
     </ion-page>
 </template>
@@ -55,13 +59,14 @@ import {
     IonLabel,
     IonInput,
     IonTextarea,
-    IonButton
+    IonButton,
 } from '@ionic/vue';
+import productoService from '../service/productoService';
 
 
 
 export default {
-    components:{
+    components: {
         IonPage,
         IonHeader,
         IonToolbar,
@@ -80,14 +85,38 @@ export default {
         IonButton,
     },
     data() {
-     return {
-        producto: {}, // Objeto del producto seleccionado
-        cantidad: 1, // Cantidad seleccionada por el usuario (por defecto, 1)
-        comentarios: '' // Comentarios ingresados por el usuario
+        return {
+            // producto: {}, // Objeto del producto seleccionado
+            // cantidad: 1, // Cantidad seleccionada por el usuario (por defecto, 1)
+            // comentarios: '' // Comentarios ingresados por el usuario
+            producto: {},
         };
-  }
-    
+    },
+    async mounted(){
+        // this.producto = JSON.parse(this.$route.params.producto);
+        this.producto = await productoService.cargarPorId(this.$route.params.id);
+        // console.log();
+    },
+    methods: {
+        agregarAlCarrito() {
+            // aca se debe hacer un push al carrito del store
+            //luego, volver a productos
+            
+        },
+        irACarrito(){
+            //volver al carrito
+            this.$router.push('/carrito');
+        }
+    },
+    computed: {
+        precioTotal() {
+            return this.producto.precio * this.cantidad; // Calcula el precio total
+        }
+    }
 }
+  ///
+
+
 </script>
 
 <style></style>

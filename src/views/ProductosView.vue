@@ -77,12 +77,14 @@ export default {
   methods: {
     agregar(index, producto1) {
       //Redirige a la vista de Detalle
-      this.$router.push({
-        name: "detalle",
-        params: {
-          producto: producto1,
-        },
-      });
+      // this.$router.push({
+      //   name: "detalle",
+      //   params: {
+      //     producto: producto1,
+      //   },
+      //}
+      //);
+      this.$router.push('/detalle/'+ index )
     },
     buscarProducto() {
       const listaProductos = this.producto;
