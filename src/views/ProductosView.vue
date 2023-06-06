@@ -89,7 +89,7 @@ export default {
     },
     buscarProducto() {
       const listaProductos = this.producto;
-      const productosEncontrados = listaProductos.filter((pro) =>pro.nombre.includes(this.searchText));
+      const productosEncontrados = listaProductos.filter((pro) =>pro.nombre.toLowerCase().includes(this.searchText));
       this.resultados = productosEncontrados;
     },
   },
@@ -102,40 +102,44 @@ export default {
       <ion-card>
         <ion-card-header>
           <ion-card-title>Menu</ion-card-title>
-          <ion-card-subtitle>Disfrute de los mejores productos al mejor
-            precio.</ion-card-subtitle>
+          <ion-card-subtitle>Disfrute de los mejores productos al mejor precio.</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
           <div>
             <ion-searchbar v-model="searchText" placeholder="Buscar producto"></ion-searchbar>
-            <ion-button @click="buscarProducto()" v-if="condicion">Buscar</ion-button>
-            <ul>
-              <li v-for="resultado in resultados" :key="resultado.id">
-                <ion-card-content>
-                  <ion-item>
-                    <ion-thumbnail>
-                      <ion-img :src="resultado.imagen">Producto</ion-img>
-                    </ion-thumbnail>
-                    <ion-label>{{ resultado.nombre }} - Precio:{{resultado.precio}}</ion-label>
-                    <ion-button @click="agregar(index)">Agregar</ion-button>
-                  </ion-item>
-                </ion-card-content>
-              </li>
-            </ul>
+            <ion-button @click="buscarProducto()">Buscar</ion-button>
           </div>
-        </ion-card-content>
 
-        <ion-card-content>
-          <ion-list v-for="(producto, index) in producto" :key="producto.id">
-            <ion-item>
-              <ion-thumbnail>
-                <ion-img :src="producto.imagen">Producto</ion-img>
-              </ion-thumbnail>
-              <ion-label>{{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
-              <ion-button @click="agregar(index)">Agregar</ion-button>
-            </ion-item>
-          </ion-list>
+          <!-- Mostrar la lista de resultados si hay resultados -->
+          <ul v-if="resultados.length > 0">
+            <ion-list>
+              <ion-card-content v-for="resultado in resultados" :key="resultado.id">
+                <ion-item>
+                  <ion-thumbnail>
+                    <ion-img :src="resultado.imagen">Producto</ion-img>
+                  </ion-thumbnail>
+                  <ion-label>{{ resultado.nombre }} - Precio: {{ resultado.precio }}</ion-label>
+                  <ion-button @click="agregar(index)">Agregar</ion-button>
+                </ion-item>
+              </ion-card-content>
+            </ion-list>
+          </ul>
+
+          <!-- Mostrar la lista de productos sin filtrar si no hay resultados -->
+          <ul v-else>
+            <ion-list>
+              <ion-card-content v-for="(producto, index) in producto" :key="producto.id">
+                <ion-item>
+                  <ion-thumbnail>
+                    <ion-img :src="producto.imagen">Producto</ion-img>
+                  </ion-thumbnail>
+                  <ion-label>{{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
+                  <ion-button @click="agregar(index)">Agregar</ion-button>
+                </ion-item>
+              </ion-card-content>
+            </ion-list>
+          </ul>
         </ion-card-content>
       </ion-card>
     </ion-content>
