@@ -80,7 +80,7 @@ export default {
       const producto = JSON.stringify(this.producto);
       //Redirige a la vista de Detalle
       this.$router.push({
-        name: "DetallesProductoView",
+        name: "detalle",
         params: {
           producto: producto,
           productoId: productoSeleccionado.id,
