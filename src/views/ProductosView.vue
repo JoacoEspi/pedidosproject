@@ -88,7 +88,7 @@ export default {
     },
     buscarProducto() {
       const listaProductos = this.producto;
-      const productosEncontrados = listaProductos.filter((pro) =>pro.nombre.toLowerCase().includes(this.searchText));
+      const productosEncontrados = listaProductos.filter((pro) =>pro.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
       this.resultados = productosEncontrados;
     },
   },
