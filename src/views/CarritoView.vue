@@ -74,7 +74,7 @@ export default {
             fecha: fechaCompra
         }
 
-        await reporteService.agregar(reporte);
+        await reporteService.agregar(reporte); //Agrego el registro en el mockapi Reporte
 
         alert(
           "Su comida está en camino. Fecha y hora de Compra: " + fechaCompra
@@ -84,7 +84,8 @@ export default {
       }
     },
   },
-  computed: {montoTotal() {
+  computed: {
+    montoTotal() {
       let total = 0;
       for (let producto of this.carrito) {
         total += producto.precioTotal;
