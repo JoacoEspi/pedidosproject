@@ -18,7 +18,7 @@
                 <ion-card-content>
                     <ion-item>
                         <ion-thumbnail slot="start">
-                            <ion-img :src="this.producto.imagen"></ion-img>
+                            <ion-img :src="'.'+this.producto.imagen"></ion-img>
                         </ion-thumbnail>
                         <ion-label>Cantidad:</ion-label>
                         <ion-input label="Cantidad" type="number" v-model="cantidad" min="1" max="20"></ion-input>
@@ -52,6 +52,7 @@ import {
     IonTitle,
     IonContent,
     IonCard,
+    IonImg,
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
@@ -60,6 +61,7 @@ import {
     IonInput,
     IonTextarea,
     IonButton,
+    IonThumbnail,
 } from '@ionic/vue';
 import productoService from '../service/productoService';
 import {useLoginStore} from '../stores/login.js';
@@ -76,6 +78,7 @@ export default {
         IonTitle,
         IonContent,
         IonCard,
+        IonImg,
         IonCardHeader,
         IonCardTitle,
         IonCardContent,
@@ -83,12 +86,13 @@ export default {
         IonLabel,
         IonInput,
         IonTextarea,
-        IonButton,
+        IonButton, 
+        IonThumbnail,
     },
     setup() {
     const store = useLoginStore();
-    const { addToCarrito } = store;
-    return { addToCarrito };
+    const { editCarritoItem, existeEnCarrito, addToCarrito} = store;
+    return { addToCarrito, editCarritoItem, existeEnCarrito };
   },
     data() {
         return {
@@ -115,8 +119,12 @@ export default {
                 comentario: this.comentario,
                 imagen : this.producto.imagen
             };
-            this.addToCarrito(productoEnviar)
-            console.log("agregado :" + productoEnviar);
+            if(this.existeEnCarrito(productoEnviar.id)===true){
+                this.editCarritoItem(productoEnviar.id, productoEnviar.cantidad)
+            }else {
+                this.addToCarrito(productoEnviar)
+            }
+            
             this.$router.push('/productos');
             
             

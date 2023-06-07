@@ -35,31 +35,31 @@ export default {
     return {
       producto: [
         {
-          id: 1,
-          nombre: "Hamburguesa Premiun",
+          id: 0,
+          nombre: "Hamburguesa Premium",
           precio: 3100,
           imagen: "./src/assets/images/HAMBURGUESA.PNG",
         },
         {
-          id: 2,
+          id: 1,
           nombre: "Pollo al Spiedo",
           precio: 4500,
           imagen: "./src/assets/images/Pollo al Spiedo.JPG",
         },
         {
-          id: 3,
+          id: 2,
           nombre: "Pizza Napolitana",
           precio: 2200,
           imagen: "./src/assets/images/Pizza.PNG",
         },
         {
-          id: 4,
+          id: 3,
           nombre: "Milanesa",
           precio: 2500,
           imagen: "./src/assets/images/milanesa.jpg",
         },
         {
-          id: 5,
+          id: 4,
           nombre: "Empanadas",
           precio: 500,
           imagen: "./src/assets/images/empanadas.jpg",
@@ -75,7 +75,7 @@ export default {
     };
   },
   methods: {
-    agregar(index, producto1) {
+    agregar(id) {
       //Redirige a la vista de Detalle
       // this.$router.push({
       //   name: "detalle",
@@ -84,7 +84,7 @@ export default {
       //   },
       //}
       //);
-      this.$router.push('/detalle/'+ index )
+      this.$router.push('/detalle/'+ id )
     },
     buscarProducto() {
       const listaProductos = this.producto;
@@ -118,8 +118,8 @@ export default {
                   <ion-thumbnail>
                     <ion-img :src="resultado.imagen">Producto</ion-img>
                   </ion-thumbnail>
-                  <ion-label>{{ resultado.nombre }} - Precio: {{ resultado.precio }}</ion-label>
-                  <ion-button @click="agregar(index,producto)">Agregar</ion-button>
+                  <ion-label style="margin-left: 10px; display: flex; align-items: center;">{{ resultado.nombre }} - Precio: {{ resultado.precio }}</ion-label>
+                  <ion-button @click="agregar(resultado.id)">Agregar</ion-button>
                 </ion-item>
               </ion-card-content>
             </ion-list>
@@ -128,13 +128,13 @@ export default {
           <!-- Mostrar la lista de productos sin filtrar si no hay resultados -->
           <ul v-else>
             <ion-list>
-              <ion-card-content v-for="(producto, index) in producto" :key="producto.id">
+              <ion-card-content v-for="producto in producto" :key="producto.id">
                 <ion-item>
                   <ion-thumbnail>
                     <ion-img :src="producto.imagen">Producto</ion-img>
                   </ion-thumbnail>
-                  <ion-label>{{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
-                  <ion-button @click="agregar(index,producto)">Agregar</ion-button>
+                  <ion-label style="margin-left: 10px; display: flex; align-items: center;">{{ producto.nombre }} - Precio: {{ producto.precio }}</ion-label>
+                  <ion-button @click="agregar(producto.id)">Agregar</ion-button>
                 </ion-item>
               </ion-card-content>
             </ion-list>

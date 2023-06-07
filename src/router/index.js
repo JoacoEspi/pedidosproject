@@ -38,7 +38,7 @@ const router = createRouter({
       component: ReporteView
     },
     {
-      path: '/eliminacion',
+      path: '/eliminacion/:id',
       name: 'eliminacion',
       component: EliminacionView
     },

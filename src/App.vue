@@ -7,9 +7,9 @@ export default {
   components: { IonApp, IonHeader },
   setup() {
     const store = useLoginStore();
-    const { isLogin, usuario } = storeToRefs(store);
+    const { isLogin, usuario, carrito } = storeToRefs(store);
     // const login = store (para traer los metodos del store)
-    return { isLogin, usuario };
+    return { isLogin, usuario, carrito };
   },
 };
 </script>
@@ -22,7 +22,7 @@ export default {
           <RouterLink v-if="!isLogin" to="/login"> Login |</RouterLink>
           <RouterLink to="/productos"> Productos |</RouterLink>
           <RouterLink to="/reporte"> Reporte |</RouterLink>
-          <RouterLink to="/carrito"> Carrito |</RouterLink>
+          <RouterLink v-if="this.carrito.length !== 0" to="/carrito"> Carrito |</RouterLink>
           <RouterLink to="/detalle"> Detalle |</RouterLink>
           <RouterLink v-if="isLogin" to="/logout"> Logout |</RouterLink>
           Usuario: {{ usuario.Email }}

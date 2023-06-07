@@ -15,8 +15,7 @@ descargar el reporte como un JSON (algo asi)
           <ion-item v-for="compra in Compras" :key="compra.id">
             <ion-label>
               Codigo de Compra: {{ compra.id }} - Cliente:
-              {{ compra.cliente }} - Fecha: {{ compra.fecha }} - Monto:
-              {{ compra.monto }}
+              {{ compra.cliente }} - Fecha: {{ compra.fecha }} - Monto: ${{ compra.monto }}
             </ion-label>
           </ion-item>
         </ion-list>
