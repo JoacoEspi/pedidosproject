@@ -11,6 +11,7 @@
     "@ionic/vue": "^7.0.6",
     "@ionic/vue-router": "^7.0.6",
     "axios": "^1.4.0",
+    "html2pdf.js": "^0.10.1",
     "pinia": "^2.0.36",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0"
