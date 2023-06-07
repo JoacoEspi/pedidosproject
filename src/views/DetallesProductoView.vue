@@ -12,20 +12,20 @@
         <ion-content>
             <ion-card>
                 <ion-card-header>
-                    <ion-card-title>{{ producto.nombre }}</ion-card-title>
+                    <ion-card-title>{{this.producto.nombre }}</ion-card-title>
                 </ion-card-header>
 
                 <ion-card-content>
                     <ion-item>
                         <ion-thumbnail slot="start">
-                            <ion-img :src="producto.imagen"></ion-img>
+                            <ion-img :src="this.producto.imagen"></ion-img>
                         </ion-thumbnail>
                         <ion-label>Cantidad:</ion-label>
-                        <ion-input type="number" v-model="cantidad" min="1" max="10"></ion-input>
+                        <ion-input label="Cantidad" type="number" v-model="cantidad" min="1" max="20"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label>Comentarios:</ion-label>
-                        <ion-textarea v-model="comentarios" placeholder="Deja tus comentarios"></ion-textarea>
+                        <ion-textarea label="Deja tus comentarios" v-model="comentario"></ion-textarea>
                     </ion-item>
                     <p>Precio total: {{ precioTotal }}</p>
                 </ion-card-content>
@@ -62,6 +62,7 @@ import {
     IonButton,
 } from '@ionic/vue';
 import productoService from '../service/productoService';
+import {useLoginStore} from '../stores/login.js';
 
 
 
@@ -84,23 +85,40 @@ export default {
         IonTextarea,
         IonButton,
     },
+    setup() {
+    const store = useLoginStore();
+    const { addToCarrito } = store;
+    return { addToCarrito };
+  },
     data() {
         return {
             // producto: {}, // Objeto del producto seleccionado
             // cantidad: 1, // Cantidad seleccionada por el usuario (por defecto, 1)
             // comentarios: '' // Comentarios ingresados por el usuario
             producto: {},
+            cantidad:1,
+            comentario:'',
         };
     },
     async mounted(){
         // this.producto = JSON.parse(this.$route.params.producto);
         this.producto = await productoService.cargarPorId(this.$route.params.id);
-        // console.log();
+        console.log(this.producto.id)
     },
     methods: {
         agregarAlCarrito() {
-            // aca se debe hacer un push al carrito del store
-            //luego, volver a productos
+            let productoEnviar = {
+                id: this.producto.id,
+                nombre: this.producto.nombre,
+                cantidad: this.cantidad,
+                precioTotal: this.precioTotal,
+                comentario: this.comentario,
+                imagen : this.producto.imagen
+            };
+            this.addToCarrito(productoEnviar)
+            console.log("agregado :" + productoEnviar);
+            this.$router.push('/productos');
+            
             
         },
         irACarrito(){
