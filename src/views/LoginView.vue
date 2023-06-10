@@ -2,9 +2,9 @@
   <ion-page>
     <ion-content>
       <h2>Login</h2>
-      <ion-input v-model="usuario.email" label="Email" type="email"></ion-input>
+      <ion-input v-model="usuario.email" label="Email" type="email" ></ion-input>
       <ion-input v-model="usuario.passw" label="Password" type="password"></ion-input>
-      <ion-button @click="logear">Login</ion-button>
+      <ion-button @click="logear" class="ion-text-center">Login</ion-button>
     </ion-content>  
   </ion-page>
 </template>
@@ -53,4 +53,24 @@ export default {
 </script>
 
 <style>
+h2{
+  font-family: "sans-serif";
+  color: black;
+  font-size: xx-large;
+  text-align:justify;
+  font-weight:bold;
+}
+
+ion-button {
+  font-family:"Georgia";
+  font-weight: bold;
+}
+
+div{
+  font-family:"Georgia";
+  color:rgb(23, 23, 37);
+  font-size:medium;
+  font-weight:bold;
+}
+
 </style>
