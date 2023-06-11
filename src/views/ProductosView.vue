@@ -78,6 +78,7 @@ export default {
         },
       ],
       resultados: [],
+      mostrarPrd: false,
     };
   },
   methods: {
@@ -96,6 +97,7 @@ export default {
       const listaProductos = this.producto;
       const productosEncontrados = listaProductos.filter((pro) =>pro.nombre.toLowerCase().includes(this.searchText.toLowerCase()));
       this.resultados = productosEncontrados;
+      this.mostrarPrd = true;
     },
   },
 };
@@ -106,12 +108,12 @@ export default {
     <ion-content>
       <ion-searchbar v-model="searchText" placeholder="Buscar producto"></ion-searchbar>
       <ion-button @click="buscarProducto()" expand="block" class="ion-margin">Buscar</ion-button>
-      
 
-        <ion-list v-if="resultados.length > 0">
-          <ion-item>
-            <ion-card v-for="resultado in resultados" :key="resultado.id">
-            <img alt="Silhouette of mountains" :src="resultado.imagen" />
+      <ion-list v-if="mostrarPrd">
+        <ion-row>
+          <ion-col v-for="resultado in resultados" :key="resultado.id" size="12">
+            <ion-card>
+              <img alt="Silhouette of mountains" :src="resultado.imagen" />
 
               <ion-card-header>
                 <ion-card-title>{{ resultado.nombre }}</ion-card-title>
@@ -124,28 +126,30 @@ export default {
 
               <ion-button @click="agregar(resultado.id)" expand="block">Agregar</ion-button>
             </ion-card>
-          </ion-item>
-        </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-list>
 
-        <ion-list v-else>
-          <ion-item>
-              <ion-card v-for="producto in productos" :key="producto.id">
-                    <img alt="Silhouette of mountains" :src="producto.imagen" />
-                    <ion-card-header>
-                      <ion-card-title>{{ producto.nombre }}</ion-card-title>
-                      <ion-card-subtitle> Precio: {{ producto.precio }}</ion-card-subtitle>
-                    </ion-card-header>
-                    <ion-card-content>
-                      Here's a small text description for the card content. Nothing more, nothing less.
-                    </ion-card-content>
-                    <ion-button @click="agregar(producto.id)" expand="block">Agregar</ion-button>
-            </ion-card>   
-          </ion-item>
+      <ion-list v-else>
+        <ion-row>
+          <ion-col v-for="producto in productos" :key="producto.id" size="12">
+            <ion-card>
+              <img alt="Silhouette of mountains" :src="producto.imagen" />
+              <ion-card-header>
+                <ion-card-title>{{ producto.nombre }}</ion-card-title>
+                <ion-card-subtitle> Precio: {{ producto.precio }}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                Here's a small text description for the card content. Nothing more, nothing less.
+              </ion-card-content>
+              <ion-button @click="agregar(producto.id)" expand="block">Agregar</ion-button>
+            </ion-card>
+          </ion-col>
+        </ion-row>
       </ion-list>
     </ion-content>
   </ion-page>
 </template>
-        
       
      
     

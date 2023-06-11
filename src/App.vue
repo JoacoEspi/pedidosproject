@@ -1,47 +1,88 @@
-<script>
-import { RouterLink, RouterView } from "vue-router";
-import { IonApp, IonHeader, IonLabel} from "@ionic/vue";
-import { storeToRefs } from "pinia";
-import { useLoginStore } from "./stores/login";
-export default {
-  components: { IonApp, IonHeader,IonLabel},
-  setup() {
-    const store = useLoginStore();
-    const { isLogin, usuario, carrito } = storeToRefs(store);
-    // const login = store (para traer los metodos del store)
-    return { isLogin, usuario, carrito };
-  },
-};
-</script>
 <template>
   <ion-app>
-    <ion-header >
-        <nav v-if="isLogin">
-          <RouterLink  class="color" to="/"> Home |</RouterLink>
-          <RouterLink  v-if="!isLogin" to="/login"> Login |</RouterLink>
-          <RouterLink  class="color" to="/productos"> Productos |</RouterLink>
-          <RouterLink class="color" to="/reporte"> Reporte |</RouterLink>
-          <RouterLink v-if="this.carrito.length !== 0" to="/carrito"> Carrito |</RouterLink>
-          <RouterLink class="color" v-if="isLogin" to="/logout"> Logout  </RouterLink>
-          <ion-label v-if="isLogin" class="usuario"> --- Usuario: {{ usuario.Email }}</ion-label>
-        </nav>
+    <ion-menu side="start" content-id="main-content" @ionDidClose="closeMenu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menú</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <ion-list>
+          <ion-item>
+            <RouterLink class="color" to="/">Home</RouterLink>
+          </ion-item>
+          <ion-item v-if="!isLogin">
+            <RouterLink to="/login">Login</RouterLink>
+          </ion-item>
+          <ion-item>
+            <RouterLink class="color" to="/productos">Productos</RouterLink>
+          </ion-item>
+          <ion-item>
+            <RouterLink class="color" to="/reporte">Reporte</RouterLink>
+          </ion-item>
+          <ion-item v-if="carrito.length !== 0">
+            <RouterLink to="/carrito">Carrito</RouterLink>
+          </ion-item>
+          <ion-item v-if="isLogin">
+            <RouterLink class="color" to="/logout">Logout</RouterLink>
+          </ion-item>
+        </ion-list>
+        <ion-label v-if="isLogin" class="usuario">Usuario: {{ usuario.Email }}</ion-label>
+      </ion-content>
+    </ion-menu>
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Titulo de la página</ion-title>
+      </ion-toolbar>
     </ion-header>
-    <RouterView />
+
+    <ion-content id="main-content">
+      <RouterView />
+    </ion-content>
   </ion-app>
 </template>
 
+<script>
+import { IonApp, IonHeader, IonLabel, IonMenu } from "@ionic/vue";
+import { RouterLink, RouterView } from "vue-router";
+import { storeToRefs } from "pinia";
+import { useLoginStore } from "./stores/login";
+
+export default {
+  components: { IonApp, IonHeader, IonLabel, IonMenu, RouterLink, RouterView },
+  setup() {
+    const store = useLoginStore();
+    const { isLogin, usuario, carrito } = storeToRefs(store);
+
+    const closeMenu = () => {
+      const menuController = document.querySelector('ion-menu-controller');
+      menuController.close();
+    }
+
+    return { isLogin, usuario, carrito, closeMenu };
+  },
+}
+</script>
+
 <style>
-ion-header{
-  font-family:'Lucida Grande';
+ion-header {
+  font-family: 'Lucida Grande';
   font-size: large;
   text-align: center;
 }
-.usuario{
+
+.usuario {
   font-family: 'Lucida Grande';
-  color:gray;
+  color: gray;
   font-size: large;
 }
-.color{
-  color:gray;
+
+.color {
+  color: gray;
 }
 </style>
