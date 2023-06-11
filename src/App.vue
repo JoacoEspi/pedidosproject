@@ -13,7 +13,7 @@
             <RouterLink class="color" to="/">Home</RouterLink>
           </ion-item>
           <ion-item v-if="!isLogin">
-            <RouterLink to="/login">Login</RouterLink>
+            <RouterLink class="color" to="/login">Login</RouterLink>
           </ion-item>
           <ion-item>
             <RouterLink class="color" to="/productos">Productos</RouterLink>
@@ -22,7 +22,7 @@
             <RouterLink class="color" to="/reporte">Reporte</RouterLink>
           </ion-item>
           <ion-item v-if="carrito.length !== 0">
-            <RouterLink to="/carrito">Carrito</RouterLink>
+            <RouterLink  class="color" to="/carrito">Carrito</RouterLink>
           </ion-item>
           <ion-item v-if="isLogin">
             <RouterLink class="color" to="/logout">Logout</RouterLink>
@@ -37,7 +37,7 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Titulo de la página</ion-title>
+        <ion-title>Pedidos Project</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -83,6 +83,6 @@ ion-header {
 }
 
 .color {
-  color: gray;
+  color: rgb(0, 0, 0);
 }
 </style>

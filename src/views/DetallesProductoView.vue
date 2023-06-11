@@ -1,14 +1,5 @@
 <template>
     <ion-page>
-        <ion-header>
-            <ion-toolbar>
-                <ion-buttons slot="start">
-                    <ion-back-button default-href="/productos"></ion-back-button>
-                </ion-buttons>
-                <ion-title>Detalle del Producto</ion-title>
-            </ion-toolbar>
-        </ion-header>
-
         <ion-content>
             <ion-card>
                   <ion-img :src="'.'+this.producto.imagen"></ion-img>
@@ -26,29 +17,6 @@
 
                 <ion-button expand="block" @click="irACarrito()">Ver Carrito</ion-button>
               </ion-card>
-            <!-- <ion-card>
-                <ion-card-header>
-                    <ion-card-title>{{this.producto.nombre }}</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                    <ion-item>
-                        <ion-thumbnail slot="start">
-                            <ion-img :src="'.'+this.producto.imagen"></ion-img>
-                        </ion-thumbnail>
-                        <ion-label>Cantidad:</ion-label>
-                        <ion-input label="Cantidad" type="number" v-model="cantidad" min="1" max="20"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Comentarios:</ion-label>
-                        <ion-textarea label="Deja tus comentarios" v-model="comentario"></ion-textarea>
-                    </ion-item>
-                    <p>Precio total: {{ precioTotal }}</p>
-                </ion-card-content>
-            </ion-card> -->
-
-          <!--   <ion-button expand="block" @click="agregarAlCarrito()">Agregar al carrito</ion-button>
-            <ion-button expand="block" @click="irACarrito()">Ver Carrito</ion-button> -->
         </ion-content>
     </ion-page>
 </template>

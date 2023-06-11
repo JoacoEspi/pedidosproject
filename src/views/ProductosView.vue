@@ -113,7 +113,7 @@ export default {
         <ion-row>
           <ion-col v-for="resultado in resultados" :key="resultado.id" size="12">
             <ion-card>
-              <img alt="Silhouette of mountains" :src="resultado.imagen" />
+              <img alt="Silhouette of mountains" :src="resultado.imagen"  />
 
               <ion-card-header>
                 <ion-card-title>{{ resultado.nombre }}</ion-card-title>

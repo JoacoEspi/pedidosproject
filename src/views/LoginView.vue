@@ -1,10 +1,5 @@
 <template>
   <ion-page>
-		<ion-header :translucent="true">
-			<ion-toolbar>
-				<ion-title class="ion-text-center">Login</ion-title>
-			</ion-toolbar>
-		</ion-header>
 
 		<ion-content :fullscreen="true">
 			<form @submit.prevent="onSubmit">
@@ -21,14 +16,6 @@
 		</ion-content>
 	</ion-page>
   
-  <!-- <ion-page>
-    <ion-content>
-      <h2>Login</h2>
-      <ion-input v-model="usuario.email" label="Email" type="email" ></ion-input>
-      <ion-input v-model="usuario.passw" label="Password" type="password"></ion-input>
-      <ion-button @click="logear" class="ion-text-center">Login</ion-button>
-    </ion-content>  
-  </ion-page> -->
 </template>
 
 <script>
