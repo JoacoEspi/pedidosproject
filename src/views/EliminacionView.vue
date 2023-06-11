@@ -41,8 +41,7 @@ export default {
     const carrito = loginStore.carrito;
 
     return {
-      carrito,
-      loginStore,
+      carrito
     };
   },
   methods: {
