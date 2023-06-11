@@ -58,10 +58,7 @@ export default {
       } else {
         this.$router.push("/carrito");
       }
-    },
-    volverCarrito() {
-      this.$router.push("/carrito");
-    },
+    }
   },
   data() {
     return {

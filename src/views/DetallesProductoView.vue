@@ -73,8 +73,8 @@ export default {
     },
     setup() {
     const store = useLoginStore();
-    const { editCarritoItem, existeEnCarrito, addToCarrito} = store;
-    return { addToCarrito, editCarritoItem, existeEnCarrito };
+    const { editCarritoItemCant, editCarritoItemTotal, editCarritoItemCom, existeEnCarrito, addToCarrito} = store;
+    return { addToCarrito, editCarritoItemCant, editCarritoItemTotal, editCarritoItemCom, existeEnCarrito };
   },
     data() {
         return {
@@ -102,7 +102,9 @@ export default {
                 imagen : this.producto.imagen
             };
             if(this.existeEnCarrito(productoEnviar.id)===true){
-                this.editCarritoItem(productoEnviar.id, productoEnviar.cantidad)
+                this.editCarritoItemCant(productoEnviar.id, productoEnviar.cantidad);
+                this.editCarritoItemTotal(productoEnviar.id, productoEnviar.precioTotal);
+                this.editCarritoItemCom(productoEnviar.id, productoEnviar.comentario);
             }else {
                 this.addToCarrito(productoEnviar)
             }

@@ -19,13 +19,31 @@ export const useLoginStore = defineStore('login', {
     addToCarrito(item) {
       this.carrito.push(item);
     },
-    editCarritoItem(id, cantidad) {
+    editCarritoItemCant(id, cantidad) {
       // Buscar el producto por ID en el carrito
       const itemIndex = this.carrito.findIndex(item => item.id === id);
     
       if (itemIndex !== -1) {
         // Modificar la cantidad del producto
         this.carrito[itemIndex].cantidad = cantidad;
+      }
+    },
+    editCarritoItemCom(id, comentario) {
+      // Buscar el producto por ID en el carrito
+      const itemIndex = this.carrito.findIndex(item => item.id === id);
+    
+      if (itemIndex !== -1) {
+        // Modificar el comentario del producto
+        this.carrito[itemIndex].comentario = comentario;
+      }
+    },
+    editCarritoItemTotal(id, precioTotal) {
+      // Buscar el producto por ID en el carrito
+      const itemIndex = this.carrito.findIndex(item => item.id === id);
+    
+      if (itemIndex !== -1) {
+        // Modificar el precio Total del producto
+        this.carrito[itemIndex].precioTotal = precioTotal;
       }
     },
     existeEnCarrito(id) {
