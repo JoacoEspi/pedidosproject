@@ -13,6 +13,9 @@ import {
   IonCardHeader,
   IonSearchbar,
   IonContent,
+  IonCard,
+  IonRow,
+  IonCol
 } from "@ionic/vue";
 
 export default {
@@ -30,6 +33,9 @@ export default {
     IonCardHeader,
     IonSearchbar,
     IonContent,
+    IonCard,
+  IonRow,
+  IonCol
   },
   data() {
     return {
@@ -98,20 +104,55 @@ export default {
 <template>
   <ion-page>
     <ion-content>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Menu</ion-card-title>
-          <ion-card-subtitle>Disfrute de los mejores productos al mejor precio.</ion-card-subtitle>
-        </ion-card-header>
+      <ion-searchbar v-model="searchText" placeholder="Buscar producto"></ion-searchbar>
+      <ion-button @click="buscarProducto()" expand="block" class="ion-margin">Buscar</ion-button>
+      
 
-        <ion-card-content>
-          <div>
-            <ion-searchbar v-model="searchText" placeholder="Buscar producto"></ion-searchbar>
-            <ion-button @click="buscarProducto()">Buscar</ion-button>
-          </div>
+        <ion-list v-if="resultados.length > 0">
+          <ion-item>
+            <ion-card v-for="resultado in resultados" :key="resultado.id">
+            <img alt="Silhouette of mountains" :src="resultado.imagen" />
+
+              <ion-card-header>
+                <ion-card-title>{{ resultado.nombre }}</ion-card-title>
+                <ion-card-subtitle> Precio: {{ resultado.precio }}</ion-card-subtitle>
+              </ion-card-header>
+
+              <ion-card-content>
+                Here's a small text description for the card content. Nothing more, nothing less.
+              </ion-card-content>
+
+              <ion-button @click="agregar(resultado.id)" expand="block">Agregar</ion-button>
+            </ion-card>
+          </ion-item>
+        </ion-list>
+
+        <ion-list v-else>
+          <ion-item>
+              <ion-card v-for="producto in productos" :key="producto.id">
+                    <img alt="Silhouette of mountains" :src="producto.imagen" />
+                    <ion-card-header>
+                      <ion-card-title>{{ producto.nombre }}</ion-card-title>
+                      <ion-card-subtitle> Precio: {{ producto.precio }}</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                      Here's a small text description for the card content. Nothing more, nothing less.
+                    </ion-card-content>
+                    <ion-button @click="agregar(producto.id)" expand="block">Agregar</ion-button>
+            </ion-card>   
+          </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-page>
+</template>
+        
+      
+     
+    
+        
 
           <!-- Mostrar la lista de resultados si hay resultados -->
-          <ul v-if="resultados.length > 0">
+          <!-- <ul v-if="resultados.length > 0">
             <ion-list>
               <ion-card-content v-for="resultado in resultados" :key="resultado.id">
                 <ion-item>
@@ -123,10 +164,10 @@ export default {
                 </ion-item>
               </ion-card-content>
             </ion-list>
-          </ul>
+          </ul> -->
 
           <!-- Mostrar la lista de productos sin filtrar si no hay resultados -->
-          <ul v-else>
+          <!-- <ul v-else>
             <ion-list>
               <ion-card-content v-for="producto in producto" :key="producto.id">
                 <ion-item>
@@ -138,15 +179,13 @@ export default {
                 </ion-item>
               </ion-card-content>
             </ion-list>
-          </ul>
-        </ion-card-content>
-      </ion-card>
-    </ion-content>
-  </ion-page>
-</template>
+          </ul> -->
+       
+      
+   
 
 <style>
-ion-card-title {
+/* ion-card-title {
   font-family: "sans-serif";
   color: black;
   font-size: xx-large;
@@ -173,5 +212,5 @@ ion-img {
 ion-button {
   display: inline-flex;
   justify-content: left;
-}
+} */
 </style>
