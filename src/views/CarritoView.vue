@@ -5,25 +5,30 @@
           <ion-card-title>Carrito de Compras</ion-card-title>
           <ion-card-subtitle>Listo para saborear y comprar. ¡Finalizá tu compra ahora!</ion-card-subtitle>
         </ion-card-header>
-        <ion-card-content>
-          <ion-list v-for="(producto) in carrito" :key="producto.id">
-            <ion-item>
-              <ion-thumbnail>
-                <ion-img :src="producto.imagen">Producto</ion-img>
-              </ion-thumbnail>
-              <ion-label style="margin-left: 10px; display: flex; align-items: center;">
-                {{ producto.nombre }} - Cantidad: {{ producto.cantidad }} - Precio total: {{ producto.precioTotal }} 
-                <ion-button style="margin-left: 10px;" @click="editarProducto(producto.id)">Editar</ion-button>
-                <ion-button style="margin-left: 10px;" @click="eliminarProducto(producto.id)">Eliminar</ion-button>
-              </ion-label>
-            </ion-item>
-          </ion-list>
-          <p>Total de productos: {{ totalProductos }}</p>
-          <p>Sumatoria de productos: {{ sumatoria }}</p>
-          <p>Monto total de la compra: {{ montoTotal }}</p>
-        </ion-card-content>
 
-        <ion-button @click="efectuarCompra">Efectuar Compra</ion-button>
+        <ion-row>
+          <ion-col v-for="(producto) in carrito" :key="producto.id" size="12">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>{{ producto.nombre }}</ion-card-title>
+                <ion-card-subtitle>Cantidad: {{ producto.cantidad }}</ion-card-subtitle>
+                <ion-card-subtitle>Comentarios: {{ producto.comentario }}</ion-card-subtitle>
+                <ion-card-subtitle>Precio total: {{ producto.precioTotal }}</ion-card-subtitle>
+              </ion-card-header>
+
+              <ion-button color="medium" @click="editarProducto(producto.id)">Editar</ion-button>
+              <ion-button color="medium" @click="eliminarProducto(producto.id)">Eliminar</ion-button>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-card-content>
+          <ion-card-subtitle class="subtitle-bold">Total de productos: {{ totalProductos }}</ion-card-subtitle>
+          <ion-card-subtitle class="subtitle-bold">Sumatoria de productos: {{ sumatoria }}</ion-card-subtitle>
+          <ion-card-subtitle class="subtitle-bold">Monto total de la compra: {{ montoTotal }}</ion-card-subtitle>
+          <ion-button color="secondary" @click="efectuarCompra">Efectuar Compra</ion-button>
+        </ion-card-content>
       </ion-card>
   </ion-page>
 </template>
@@ -95,7 +100,7 @@ export default {
     sumatoria() {
       let total = 0;
       for (let producto of this.carrito) {
-        total += producto.cantidad;
+        total += parseInt(producto.cantidad);
       }
       return total;
     },
@@ -107,4 +112,7 @@ export default {
 </script>
 
 <style>
+.subtitle-bold {
+  font-weight: bold;
+}
 </style>
