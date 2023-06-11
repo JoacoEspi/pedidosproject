@@ -41,9 +41,9 @@ import reporteService from "../service/reporteService.js";
 export default {
   components: { IonPage, IonButton, IonContent },
     setup() {
-    const loginStore = useLoginStore();
-    const carrito = loginStore.carrito;
-    const usuario = loginStore.usuario;
+    const store = useLoginStore();
+    const carrito = store.carrito;
+    const usuario = store.usuario;
     return { carrito, usuario }
     },
   methods: {
