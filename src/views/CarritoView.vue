@@ -46,12 +46,6 @@ export default {
     const usuario = loginStore.usuario;
     return { carrito, usuario }
     },
-  data() {
-    return {
-      totalProductos: 0,
-      sumatoria: 0,
-    };
-  },
   methods: {
     eliminarProducto(id) {
       this.$router.push('/eliminacion/'+ id )
