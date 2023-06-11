@@ -6,8 +6,8 @@
           <ion-card-subtitle>Listo para saborear y comprar. ¡Finalizá tu compra ahora!</ion-card-subtitle>
         </ion-card-header>
 
-        <ion-row>
-          <ion-col v-for="(producto) in carrito" :key="producto.id" size="12">
+        <ion-row v-for="(producto) in carrito" :key="producto.id" size="12">
+          <ion-col >
             <ion-card>
               <ion-card-header>
                 <ion-card-title>{{ producto.nombre }}</ion-card-title>
