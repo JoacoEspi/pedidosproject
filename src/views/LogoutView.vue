@@ -1,9 +1,12 @@
 <template>
   <ion-page>
-    <ion-content>
-      <h2>¿Esta seguro que desea deslogearse?</h2>
-      <ion-button @click="unlogear" color="danger">Confirmo</ion-button>
-      <ion-button @click="aHome" color="warning">Volver</ion-button>
+    <ion-content class="ion-text-center">
+      <ion-label >¿Esta seguro que desea deslogearse?</ion-label>
+      <div>
+        <ion-button @click="unlogear" color="medium" size="mediun">Confirmo</ion-button>
+      <ion-button @click="aHome" color="medium" size="mediun">Volver</ion-button>
+      </div>
+      
     </ion-content>
   </ion-page>
 </template>
