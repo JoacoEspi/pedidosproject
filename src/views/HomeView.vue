@@ -12,6 +12,12 @@ export default {
   methods: {
     iniciarSesion(){
       this.$router.push("/login");
+    },
+    irAProductos(){
+      this.$router.push("/productos");
+    },
+    irACarrito(){
+      this.$router.push("/carrito")
     }
   },
   setup() {
@@ -31,6 +37,8 @@ export default {
     <div class="logo-container">
       <ion-img src="./src/assets/logoProyecto.jpg" alt="Logo de mi proyecto" class="logo-image"></ion-img>
       <ion-button v-if="!isLogin" @click="iniciarSesion" class="button-left-margin">Iniciar sesión</ion-button>
+      <ion-button v-if="isLogin" @click="irAProductos" class="button-left-margin">Productos</ion-button>
+      <ion-button v-if="isLogin" @click="irACarrito" class="button-left-margin">Carrito</ion-button>
     </div>
   </ion-content>
 </template>
