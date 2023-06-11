@@ -1,21 +1,59 @@
 <template>
   <ion-page>
+		<ion-header :translucent="true">
+			<ion-toolbar>
+				<ion-title class="ion-text-center">Login</ion-title>
+			</ion-toolbar>
+		</ion-header>
+
+		<ion-content :fullscreen="true">
+			<form @submit.prevent="onSubmit">
+				<ion-item>
+					<ion-label position="floating">User name</ion-label>
+					<ion-input type="text" required v-model="usuario.email" />
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating">Password</ion-label>
+					<ion-input type="password" required v-model="usuario.passw" />
+				</ion-item>
+				<ion-button @click="logear" type="submit" expand="block">login</ion-button>
+			</form>
+		</ion-content>
+	</ion-page>
+  
+  <!-- <ion-page>
     <ion-content>
       <h2>Login</h2>
       <ion-input v-model="usuario.email" label="Email" type="email" ></ion-input>
       <ion-input v-model="usuario.passw" label="Password" type="password"></ion-input>
       <ion-button @click="logear" class="ion-text-center">Login</ion-button>
     </ion-content>  
-  </ion-page>
+  </ion-page> -->
 </template>
 
 <script>
-import { IonPage, IonButton, IonContent, IonInput } from "@ionic/vue";
+import { IonContent,
+	IonHeader,
+	IonPage,
+	IonTitle,
+	IonToolbar,
+	IonItem,
+	IonLabel,
+	IonInput,
+	IonButton, } from "@ionic/vue";
 import { useLoginStore } from "../stores/login";
 import usuariosService from "../service/usuariosService.js";
 
 export default {
-  components: { IonPage, IonButton, IonContent, IonInput },
+  components: { IonContent,
+	IonHeader,
+	IonPage,
+	IonTitle,
+	IonToolbar,
+	IonItem,
+	IonLabel,
+	IonInput,
+	IonButton},
   setup() {
     const store = useLoginStore();
     const { login } = store;
@@ -53,24 +91,4 @@ export default {
 </script>
 
 <style>
-h2{
-  font-family: "sans-serif";
-  color: black;
-  font-size: xx-large;
-  text-align:justify;
-  font-weight:bold;
-}
-
-ion-button {
-  font-family:"Georgia";
-  font-weight: bold;
-}
-
-div{
-  font-family:"Georgia";
-  color:rgb(23, 23, 37);
-  font-size:medium;
-  font-weight:bold;
-}
-
 </style>
