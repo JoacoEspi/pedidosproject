@@ -6,20 +6,19 @@ descargar el reporte como un JSON (algo asi)
 <template>
   <ion-page>
     <ion-content>
-      <ion-card-header>
-        <ion-card-title>Modulo de Analitica</ion-card-title>
-        <ion-card-subtitle>Historico de Compras</ion-card-subtitle>
+        <ion-subtitle>Historico de Compras</ion-subtitle>
+        <div class="ion-text-end">
+        <ion-button size="small" fill="outline" @click="downloadAsPDF">Descargar como PDF</ion-button>
+        </div>
 
         <ion-list>
-          <button @click="downloadAsPDF">Descargar como PDF</button>
           <ion-item v-for="compra in Compras" :key="compra.id">
-            <ion-label>
+            <ion-label text-wrap="nowrap">
               Codigo de Compra: {{ compra.id }} - Cliente:
               {{ compra.cliente }} - Fecha: {{ compra.fecha }} - Monto: ${{ compra.monto }}
             </ion-label>
           </ion-item>
         </ion-list>
-      </ion-card-header>
     </ion-content>
   </ion-page>
 </template>
@@ -28,12 +27,10 @@ descargar el reporte como un JSON (algo asi)
 import {
   IonPage,
   IonContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
   IonList,
   IonLabel,
   IonItem,
+  IonButton
 } from "@ionic/vue";
 import reporteServices from "../service/reporteService.js";
 import html2pdf from "html2pdf.js";
@@ -42,12 +39,10 @@ export default {
   components: {
     IonPage,
     IonContent,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
     IonList,
     IonLabel,
     IonItem,
+    IonButton
   },
   data() {
     return {
@@ -67,4 +62,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+ .ion-text-end {
+  text-align: right;
+  margin-right: 20px;
+}
+.scroll-horizontal {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+</style>
