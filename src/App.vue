@@ -15,10 +15,10 @@
           <ion-item v-if="!isLogin">
             <RouterLink class="color" to="/login">Login</RouterLink>
           </ion-item>
-          <ion-item>
+          <ion-item v-if="isLogin">
             <RouterLink class="color" to="/productos">Productos</RouterLink>
           </ion-item>
-          <ion-item>
+          <ion-item v-if="isLogin">
             <RouterLink class="color" to="/reporte">Reporte</RouterLink>
           </ion-item>
           <ion-item v-if="carrito.length !== 0">
