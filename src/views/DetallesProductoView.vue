@@ -14,8 +14,6 @@
                     <p>Precio total: {{ precioTotal }}</p>
                 </ion-card-content>
                 <ion-button expand="block" @click="agregarAlCarrito()">Agregar al carrito</ion-button>
-
-                <ion-button expand="block" @click="irACarrito()">Ver Carrito</ion-button>
               </ion-card>
         </ion-content>
     </ion-page>
@@ -113,10 +111,7 @@ export default {
             
             
         },
-        irACarrito(){
-            //volver al carrito
-            this.$router.push('/carrito');
-        }
+
     },
     computed: {
         precioTotal() {
