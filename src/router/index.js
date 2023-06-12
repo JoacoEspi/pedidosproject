@@ -8,7 +8,7 @@ import CarritoView from '../views/CarritoView.vue'
 import EliminacionView from '../views/EliminacionView.vue'
 import DetallesProductoView from '../views/DetallesProductoView.vue'
 
-
+/* Se indican las rutas contenidas en el Proyecto*/
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

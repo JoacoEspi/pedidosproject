@@ -1,13 +1,9 @@
-// Esta view debe mostrar: Un array de Compras (Listado de productos), con su
-monto y cliente asociado. // Debe ser visible solo para el gerente/admin. (Se
-deben crear usuarios con diferentes permisos) // Que tenga la opcion de
-descargar el reporte como un JSON (algo asi)
-
 <template>
   <ion-page>
     <ion-content>
         <ion-subtitle>Historico de Compras</ion-subtitle>
         <div class="ion-text-end">
+          <!-- Se genera Boton que cumpla la condicion de Descargar el listado en un archivo PDF: Desarrollado en Methods-->
         <ion-button size="small" fill="outline" @click="downloadAsPDF">Descargar como PDF</ion-button>
         </div>
 
@@ -50,12 +46,17 @@ export default {
     };
   },
   async mounted() {
+    //Ejecuta la carga correspondiente mediante la solicitud HTTP Get al Servicio "reporteService" + su listado.
     this.Compras = await reporteServices.cargar();
     console.log(this.Compras);
   },
   methods: {
     downloadAsPDF() {
-      const element = this.$el.querySelector("ion-label"); // Selecciona el elemento ion-list
+      /* Aca se selecciona el elemento HTML con el nombre de etiqueta IonLable con el metodo querySelector
+      hace referencia al elemento actual al que se llama en la funcion */
+      const element = this.$el.querySelector("ion-label"); 
+      /* Esta linea utiliza biblioteca html2pdf para generar un pdfdel elemento seleccionado en la linea anterior
+      generanod y guardandolo con el nombre compras.pdf */
       html2pdf().from(element).save("compras.pdf"); // Crea el PDF y lo descarga con el nombre 'lista.pdf'
     },
   },

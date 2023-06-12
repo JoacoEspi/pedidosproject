@@ -1,24 +1,26 @@
 <template>
   <ion-page>
     <ion-content>
+      <!-- 1.- Se agrega Buscador de Producto -->
       <ion-searchbar v-model="searchText" placeholder="Buscar producto"></ion-searchbar>
       <ion-button @click="buscarProducto()" expand="block" class="ion-margin">Buscar</ion-button>
 
+      <!-- 2.- Se ingresa directiva V-for para que liste si ubica coincidencias-->
       <ion-list v-if="mostrarPrd">
+        <!-- 3.- Se hace uso de IonCard para listar las resultados en forma de Tarjetas Verticalmente con la descripcion del producto-->
         <ion-row>
           <ion-col v-for="resultado in resultados" :key="resultado.id" size="12">
             <ion-card>
-              <img alt="Silhouette of mountains" :src="resultado.imagen"  />
-
+              <img alt="Silhouette of mountains" :src="resultado.imagen" />
               <ion-card-header>
                 <ion-card-title>{{ resultado.nombre }}</ion-card-title>
                 <ion-card-subtitle> Precio: {{ resultado.precio }}</ion-card-subtitle>
               </ion-card-header>
-
               <ion-card-content>
-                Here's a small text description for the card content. Nothing more, nothing less.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.
               </ion-card-content>
-
+              <!--4.- Se emplea Boton que acciona el Metodo Agregar el cual Rutea a Componente Detalle -->
               <ion-button @click="agregar(resultado.id)" expand="block">Agregar</ion-button>
             </ion-card>
           </ion-col>

@@ -8,6 +8,9 @@ const apiClient = axios.create({
    })
 
 export default {
+    /* Funcion asincronica llamada Cargar la cual cumple al funcion de realizar una solicitud HTTP GET
+    para obtener la informacion del Servicio generado en Mockapi
+     */ 
     async cargar() {
     try {
     const response = await apiClient.get('/Compra');
